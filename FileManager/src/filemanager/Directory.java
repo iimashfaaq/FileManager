@@ -41,8 +41,8 @@ public class Directory {
     
     public String openDirectory() {
         String list = "";
-        for(int i = 0; i < this.files.size();i++) {
-            list += String.valueOf(this.files[i]) + "\n";
+        for (File file : this.files) {
+            list += String.valueOf(file) + "\n";
         }
         return (list);
     }
