@@ -5,13 +5,15 @@
  */
 package filemanager;
 
+import java.io.Serializable;
+
 /**
  * @author Ash
  * @author Prachi
  * @author Niti
  */
 
-public class Date implements Comparable{
+public class Date implements Comparable, Serializable{
     
     protected int day;
     protected int month;

@@ -5,8 +5,8 @@
  */
 package filemanager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -27,7 +27,7 @@ class FileNotFound extends RuntimeException {
     }
 }
 
-public class Directory {
+public class Directory implements Serializable{
     private String name;
     private Date modifiedDate;
     private ArrayList<File> files;

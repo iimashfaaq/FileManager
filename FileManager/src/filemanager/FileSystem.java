@@ -5,6 +5,7 @@
  */
 package filemanager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -26,7 +27,7 @@ class DirectoryNotFound extends RuntimeException {
     }
 }
 
-public class FileSystem {
+public class FileSystem implements Serializable{
     private String name;
     private ArrayList<Directory> directories;
     
