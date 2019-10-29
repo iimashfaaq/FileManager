@@ -6,9 +6,11 @@
 package filemanager;
 
 /**
- *
- * @author prachidhingra
+ * @author Ash
+ * @author Prachi
+ * @author Niti
  */
+
 public class Date implements Comparable{
     
     protected int day;
@@ -62,6 +64,6 @@ public class Date implements Comparable{
     
     @Override
     public String toString(){  
-        return (day+"-"+month+"-"+year);
+        return (this.day + " - " + this.month + " - " + this.year);
     } 
 }

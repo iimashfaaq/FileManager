@@ -1,17 +1,20 @@
-package filemanager;
-
-
-import java.util.Objects;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+package filemanager;
+
+
+import java.util.Objects;
+
 /**
- *
- * @author Niteshkumar
+ * @author Ash
+ * @author Prachi
+ * @author Niti
  */
+
 public class Owner {
     private String name;
     private String password;
@@ -28,9 +31,9 @@ public class Owner {
     @Override
     public boolean equals(Object o){
         if(o instanceof Owner){
-            Owner temp = (Owner)o;
-            return this.name.equals(temp.name) &&
-                    this.password.equals(temp.password);
+            Owner own = (Owner)o;
+            return this.name.equals(own.name) &&
+                    this.password.equals(own.password);
         }
         return false;
     }

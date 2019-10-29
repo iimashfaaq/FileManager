@@ -10,11 +10,27 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- *
  * @author Ash
  * @author Prachi
  * @author Niti
  */
+
+class FileAlreadyExists extends RuntimeException {
+    public FileAlreadyExists(File file) {
+        super("File exixts");
+        
+        System.out.println(file.getName() + " already exists...\n");
+    }
+}
+
+class FileNotFound extends RuntimeException {
+    public FileNotFound(File file) {
+        super("File does not exist");
+        
+        System.out.println(file.getName() + " does not exist...\n");
+    }
+}
+
 public class Directory {
     private String name;
     private Date modifiedDate;
@@ -39,6 +55,10 @@ public class Directory {
         return this.modifiedDate;
     }
     
+    public ArrayList getFiles() {
+        return this.files;
+    }
+    
     public String openDirectory() {
         String list = "";
         for (File file : this.files) {
@@ -48,15 +68,22 @@ public class Directory {
     }
     
     public boolean createFile(File f) {
+        if(this.files.contains(f)) {
+            throw new FileAlreadyExists(f);
+//            return false;
+        }
+        
         this.files.add(f);
-        //ADD FILE HANDLING AND EXCEPTIONS
         return true;
     }
     
     public boolean deleteFile(File f) {
-        this.files.remove(f);
-        //ADD FILE HANDLING AND EXCEPTIONS
-        return true;
+        if(this.files.contains(f)) {
+            this.files.remove(f);
+            return true;
+        }
+        throw new FileNotFound(f);
+//        return false;
     }
     @Override
     public String toString() {
@@ -64,12 +91,11 @@ public class Directory {
     }
     
     @Override
-    public boolean equals(Object dir) {
-        if(dir instanceof Directory) {
-            Directory temp = (Directory)dir;
-            if(this.name.equals(temp.getName()) && this.modifiedDate.equals(temp.getDate()) 
-                    && this.noFiles() == temp.noFiles())
-                return true;
+    public boolean equals(Object o) {
+        if(o instanceof Directory) {
+            Directory dir = (Directory)o;
+            return (this.name.equals(dir.getName()) && this.modifiedDate.equals(dir.getDate()) 
+                    && this.noFiles() == dir.noFiles());
         }
         return false;
     }
