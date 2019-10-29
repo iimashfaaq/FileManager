@@ -14,28 +14,29 @@ import java.util.Comparator;
  * @author Prachi
  * @author Niti
  */
-public class SortByFileDate implements Runnable {
-    private ArrayList<File> files = new ArrayList<>();
+
+public class SortByDirectoryDate implements Runnable {
+    private ArrayList<Directory> files = new ArrayList<>();
     
-    public SortByFileDate(Directory dir) {
-        ArrayList<File> fileRef = dir.getFiles();
+    public SortByDirectoryDate(FileSystem fs) {
+        ArrayList<Directory> dirRef = fs.getDirectories();
         
-        fileRef.forEach((f) -> {
-            this.files.add(f);
+        dirRef.forEach((dir) -> {
+            this.files.add(dir);
         });
     }
     
     @Override
     public void run() {
-        Collections.sort(this.files, new SortByDate());
+        Collections.sort(this.files, new SortByDirDate());
     }
 }
 
-class SortByDate implements Comparator {
+class SortByDirDate implements Comparator {
     @Override
     public int compare(Object o1, Object o2) {
-        File f1 = (File)o1;
-        File f2 = (File)o2;
+        Directory f1 = (Directory)o1;
+        Directory f2 = (Directory)o2;
         
         return (f1.getModifiedDate().compareTo(f2.getModifiedDate()));
     }

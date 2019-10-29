@@ -17,17 +17,13 @@ import java.util.Objects;
 
 class FileAlreadyExists extends RuntimeException {
     public FileAlreadyExists(File file) {
-        super("File exixts");
-        
-        System.out.println(file.getName() + " already exists...\n");
+        super(file.getName() + " already exists...\n");
     }
 }
 
 class FileNotFound extends RuntimeException {
     public FileNotFound(File file) {
-        super("File does not exist");
-        
-        System.out.println(file.getName() + " does not exist...\n");
+        super(file.getName() + " does not exist...\n");
     }
 }
 
@@ -51,7 +47,7 @@ public class Directory {
         return this.files.size();
     }
     
-    public Date getDate() {
+    public Date getModifiedDate() {
         return this.modifiedDate;
     }
     
@@ -70,7 +66,6 @@ public class Directory {
     public boolean createFile(File f) {
         if(this.files.contains(f)) {
             throw new FileAlreadyExists(f);
-//            return false;
         }
         
         this.files.add(f);
@@ -83,8 +78,8 @@ public class Directory {
             return true;
         }
         throw new FileNotFound(f);
-//        return false;
     }
+    
     @Override
     public String toString() {
         return (this.name + " - " + this.files.size() + " - " + this.modifiedDate );
@@ -94,7 +89,7 @@ public class Directory {
     public boolean equals(Object o) {
         if(o instanceof Directory) {
             Directory dir = (Directory)o;
-            return (this.name.equals(dir.getName()) && this.modifiedDate.equals(dir.getDate()) 
+            return (this.name.equals(dir.name) && this.modifiedDate.equals(dir.modifiedDate) 
                     && this.noFiles() == dir.noFiles());
         }
         return false;

@@ -72,17 +72,19 @@ public class File {
         return this.name;
     }
     
-    public String getModifiedDate(){
+    public Date getModifiedDate(){
         return this.modifiedDate;
     }
     
-    public boolean write(String data){
+    public boolean write(String data, Date currentDate){
         this.content = data;
+        this.modifiedDate = currentDate;
         return true;
     }
     
-    public boolean append(String data){
+    public boolean append(String data, Date currentDate){
         this.content += data;
+        this.modifiedDate = currentDate;
         return true;
     }
     

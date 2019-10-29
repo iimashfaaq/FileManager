@@ -66,4 +66,17 @@ public class Date implements Comparable{
     public String toString(){  
         return (this.day + " - " + this.month + " - " + this.year);
     } 
+
+    void dateIncrement() {
+        this.day++;
+        if(this.day > 30)
+        {
+            this.day = 1;
+            this.month++;
+            if(this.month > 13){
+                this.month = 1;
+                this.year++;
+            }
+        }
+    }
 }
